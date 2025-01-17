@@ -1,0 +1,42 @@
+<svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="colorGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FF6B6B"/>
+      <stop offset="50%" style="stop-color:#4ECDC4"/>
+      <stop offset="100%" style="stop-color:#45B7D1"/>
+    </linearGradient>
+    
+    <linearGradient id="brushGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FF6B6B" stop-opacity="0.3"/>
+      <stop offset="100%" style="stop-color:#45B7D1" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Decorative Brush Stroke -->
+  <path d="M40 75 Q150 35 260 75" 
+        fill="none" 
+        stroke="url(#brushGradient)" 
+        stroke-width="45" 
+        stroke-linecap="round"/>
+
+  <!-- Main Text Group -->
+  <g transform="translate(150,75)" text-anchor="middle">
+    <!-- 색 -->
+    <text x="-45" y="20" 
+          font-family="Noto Sans KR, Arial" 
+          font-size="90" 
+          font-weight="bold"
+          fill="url(#colorGradient)"
+          style="paint-order: stroke fill;">색</text>
+    
+    <!-- 담 -->
+    <text x="75" y="20" 
+          font-family="Noto Sans KR, Arial" 
+          font-size="90" 
+          font-weight="bold"
+          fill="#333333"
+          style="paint-order: stroke fill;">담</text>
+  </g>
+  
+</svg>
