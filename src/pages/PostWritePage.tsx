@@ -2,6 +2,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
+import { useNavigate } from 'react-router-dom';
 import {
     Form,
     FormControl,
@@ -35,6 +36,8 @@ const PostWritePage = () => {
         },
     });
 
+    const navigate = useNavigate();
+
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
         try {
             await fetchApi('/api/posts', {
@@ -44,6 +47,8 @@ const PostWritePage = () => {
                 },
                 body: JSON.stringify(data),
             });
+
+            navigate('/board');
         } catch (error) {
             console.error('게시물 작성 실패 : ', error);
         }
