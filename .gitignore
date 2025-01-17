@@ -59,3 +59,6 @@ Temporary Items
 
 ## environment
 .env
+
+## assets
+src/assets/*
