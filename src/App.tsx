@@ -1,5 +1,5 @@
-import { Route, Routes } from 'react-router-dom';
-import { Outlet, Link } from 'react-router-dom';
+import { Route, Routes, Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import MainPage from './pages/MainPage';
 import QRPage from './pages/QrPage';
@@ -15,11 +15,30 @@ import PostWritePage from './pages/PostWritePage';
 import './App.css';
 
 const Layout = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+
+    useEffect(() => {
+        const token = localStorage.getItem('jwt');
+        setIsLoggedIn(!!token);
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('jwt');
+        setIsLoggedIn(false);
+        alert('로그아웃 되었습니다.');
+        navigate('/');
+    };
+
     return (
         <div className="min-h-screen flex flex-col">
-            <header className="w-full p-4 border-b">
-                <div className="container mx-auto flex justify-between items-center">
-                    {/* 왼쪽 상단 - 홈 버튼 */}
+            <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-white/80 border-b shadow-sm">
+                <div className="container mx-auto flex justify-between items-center p-4">
                     <Link to="/">
                         <img
                             src={logo}
@@ -28,15 +47,21 @@ const Layout = () => {
                         />
                     </Link>
 
-                    {/* 오른쪽 상단 - 로그인 버튼 */}
-                    <Link to="/login" className="hidden md:block">
-                        <Button variant="outline">Login</Button>
-                    </Link>
+                    <div className="hidden md:flex gap-4">
+                        {isLoggedIn ? (
+                            <Button variant="outline" onClick={handleLogout}>
+                                Logout
+                            </Button>
+                        ) : (
+                            <Link to="/login">
+                                <Button variant="outline">Login</Button>
+                            </Link>
+                        )}
+                    </div>
                 </div>
             </header>
 
-            {/* 메인 콘텐츠 */}
-            <main className="flex-1">
+            <main className="mt-16">
                 <Outlet />
             </main>
         </div>
