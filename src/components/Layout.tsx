@@ -13,6 +13,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
 import { fetchApi } from '@/lib/utils';
+import logo from '@/assets/logo.svg';
 
 interface User {
     username: string;
@@ -67,7 +68,7 @@ export const Layout = () => {
                 <div className="container mx-auto flex justify-between items-center p-4">
                     <Link to="/">
                         <img
-                            src={'/src/assets/logo.svg'}
+                            src={logo}
                             alt="Home"
                             className="h-10 w-20 object-contain hover:opacity-80 transition-opacity"
                         />
