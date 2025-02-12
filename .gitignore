@@ -62,3 +62,6 @@ Temporary Items
 
 ## assets
 src/assets/*
+
+## public
+public/*
