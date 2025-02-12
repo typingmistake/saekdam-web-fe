@@ -22,7 +22,7 @@ jobs:
                   NODE_ENV: production
                   VITE_API_URL: ${{ secrets.API_URL }}
                   VITE_KAKAO_JS_KEY: a1976e486ba5c5de98358fed5bc150a5
-                  VITE_ENV: development
+                  VITE_ENV: production
               run: npm run build
 
             - name: Copy files to EC2

@@ -7,7 +7,7 @@ interface ProxyConfig {
     [key: string]: ProxyOptions;
 }
 
-const env: string = import.meta.env.ENV;
+const env: string = import.meta.env.VITE_ENV || 'development';
 
 // https://vite.dev/config/
 export default defineConfig({
