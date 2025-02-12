@@ -1,6 +1,13 @@
-import { defineConfig } from 'vite';
+/// <reference types="vite/client" />
+import { defineConfig, UserConfigExport, ProxyOptions } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+
+interface ProxyConfig {
+    [key: string]: ProxyOptions;
+}
+
+const env: string = import.meta.env.ENV;
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -11,12 +18,15 @@ export default defineConfig({
         },
     },
     server: {
-        proxy: {
-            '/api': {
-                target: 'http://localhost:8080',
-                changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/api/, ''),
-            },
-        },
+        proxy:
+            env === 'development'
+                ? ({
+                      '/api': {
+                          target: 'http://localhost:8080',
+                          changeOrigin: true,
+                          rewrite: (path: string) => path.replace(/^\/api/, ''),
+                      },
+                  } as ProxyConfig)
+                : undefined,
     },
-});
+} as UserConfigExport);
