@@ -18,7 +18,7 @@ export const API_BASE_URL = (() => {
 })();
 
 export async function fetchApi(endpoint: string, options: RequestInit = {}) {
-    const url = new URL(endpoint, API_BASE_URL).toString();
+    const url = `${API_BASE_URL}${endpoint}`;
     const token = localStorage.getItem('jwt');
 
     // 토큰이 존재하면 항상 헤더에 Authorization을 추가
