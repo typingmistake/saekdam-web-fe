@@ -37,7 +37,7 @@ export const Layout = () => {
         const token = localStorage.getItem('jwt');
         setIsLoggedIn(!!token);
         if (token) {
-            fetchApi('users/me', { method: 'GET' }).then((data) => {
+            fetchApi('/users/me', { method: 'GET' }).then((data) => {
                 setUser({
                     ...data,
                     avatar: `https://api.dicebear.com/9.x/thumbs/svg?seed=${data.username}`,
