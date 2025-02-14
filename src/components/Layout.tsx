@@ -90,14 +90,15 @@ export const Layout = () => {
                                     <div className="flex items-center gap-4 p-4 border-b">
                                         <Avatar>
                                             <AvatarImage
-                                                src={`https://api.dicebear.com/9.x/thumbs/svg?seed=${user.username}`}
+                                                src={`https://api.dicebear.com/9.x/thumbs/svg?seed=${
+                                                    user?.username || '익명'
+                                                }`}
                                             />
-                                            <AvatarFallback>{user.username[0]}</AvatarFallback>
                                         </Avatar>
                                         <div className="flex flex-col">
                                             <span className="font-medium">{user.username}</span>
                                             <span className="text-sm text-gray-500">
-                                                {user.email}
+                                                {user?.email || '이메일 없음'}
                                             </span>
                                         </div>
                                     </div>
