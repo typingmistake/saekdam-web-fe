@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Github, Chrome } from 'lucide-react';
+import { Chrome } from 'lucide-react';
 import { loginFormSchema } from '@/schemas';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -28,21 +28,28 @@ export function LoginForm() {
         try {
             const jwt = await fetchApi('/users/login', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(values),
             });
-
             localStorage.setItem('jwt', jwt);
             alert('로그인이 완료되었습니다.');
             window.location.href = '/';
         } catch (error: unknown) {
-            if (error instanceof Error) {
-                alert(error.message);
-            } else {
-                alert('알 수 없는 오류가 발생했습니다.');
-            }
+            console.error(error);
+            alert(error instanceof Error ? error.message : '알 수 없는 오류가 발생했습니다.');
+        }
+    };
+
+    // 카카오 로그인 버튼 클릭 핸들러
+    const handleKakaoLogin = async () => {
+        try {
+            // 백엔드가 반환한 카카오 로그인 URL (JSON: { loginUrl: "..." })
+            const response = await fetchApi('/auth/kakao/login');
+            const { loginUrl } = response;
+            window.location.href = loginUrl;
+        } catch (error) {
+            console.error('카카오 로그인 에러:', error);
+            alert('카카오 로그인 중 오류가 발생했습니다.');
         }
     };
 
@@ -135,11 +142,14 @@ export function LoginForm() {
             </div>
 
             <div className="space-y-3">
+                {/* GitHub 로그인 버튼 제거 */}
+                {/* 카카오 로그인 버튼 추가 */}
                 <Button
-                    className="w-full bg-gray-900 hover:bg-gray-800 transition-colors"
+                    onClick={handleKakaoLogin}
+                    className="w-full h-11 bg-yellow-300 hover:bg-yellow-400 transition-colors"
                     variant="default"
                 >
-                    <Github className="mr-2 h-5 w-5" /> GitHub로 로그인
+                    카카오로 로그인
                 </Button>
                 <Button
                     className="w-full h-11 bg-red-500 hover:bg-red-600 transition-colors"
