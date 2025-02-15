@@ -25,7 +25,7 @@ function App() {
                 <Route path="/find-password" element={<FindPasswordPage />} />
                 <Route path="/post/:id" element={<PostViewPage />} />
                 <Route path="/qr" element={<QRPage />} />
-                <Route path="/oauth2/kakao/callback" element={<KakaoCallback />} />
+                <Route path="/auth/oauth2/kakao/callback" element={<KakaoCallback />} />
             </Route>
             <Route path="*" element={<NotFound />} />
         </Routes>
