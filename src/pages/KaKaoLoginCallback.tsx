@@ -19,6 +19,7 @@ const KakaoCallback = () => {
                 // 백엔드 엔드포인트에 code를 전달하여 JWT를 받아옴
                 const jwt = await fetchApi(`/auth/oauth2/kakao/callback?code=${code}`);
                 localStorage.setItem('jwt', jwt);
+                alert('카카오 로그인이 완료되었습니다.');
                 navigate('/');
             } catch (error) {
                 console.error(error);
@@ -26,9 +27,9 @@ const KakaoCallback = () => {
                 navigate('/');
             }
         })();
-    }, [searchParams, navigate]);
+    }, [searchParams]);
 
-    return <div>로그인 중입니다. 잠시만 기다려주세요...</div>;
+    return null;
 };
 
 export default KakaoCallback;
