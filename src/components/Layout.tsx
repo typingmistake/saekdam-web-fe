@@ -7,8 +7,9 @@ import {
     SheetDescription,
     SheetTrigger,
 } from '@/components/ui/sheet';
+import { AuthContext } from '@/context/AuthContext';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
@@ -22,7 +23,7 @@ interface User {
 }
 
 export const Layout = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
     const [user, setUser] = useState<User | null>(null);
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
@@ -44,7 +45,7 @@ export const Layout = () => {
                 });
             });
         }
-    }, []);
+    }, [isLoggedIn]);
 
     const handleLogout = () => {
         localStorage.removeItem('jwt');
