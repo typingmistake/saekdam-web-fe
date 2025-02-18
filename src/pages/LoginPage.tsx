@@ -169,7 +169,7 @@ const LoginPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
         >
-            <div className="flex justify-center pt-6 bg-gradient-to-b from-gray-50 to-white">
+            <div className="flex justify-center pt-4 bg-gradient-to-b from-gray-50 to-white">
                 <LoginForm />
             </div>
         </motion.div>
