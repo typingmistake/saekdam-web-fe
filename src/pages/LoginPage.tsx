@@ -142,8 +142,6 @@ export function LoginForm() {
             </div>
 
             <div className="space-y-3">
-                {/* GitHub 로그인 버튼 제거 */}
-                {/* 카카오 로그인 버튼 추가 */}
                 <Button
                     onClick={handleKakaoLogin}
                     className="w-full h-11 bg-yellow-300 hover:bg-yellow-400 transition-colors"
