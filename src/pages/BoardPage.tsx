@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DataTable } from '@/components/PostTable';
-import { PostList, Post } from '@/components/PostList';
+import { PostList } from '@/components/PostList';
 import { Input } from '@/components/ui/input';
 import { PaginationComponent } from '@/components/Pagination';
 import { Button } from '@/components/ui/button';
@@ -9,6 +9,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { fetchApi } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { Search, LayoutList, TableProperties } from 'lucide-react';
+import { Post } from '@/types';
 import {
     Select,
     SelectContent,

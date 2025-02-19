@@ -1,14 +1,6 @@
 import { Link } from 'react-router-dom';
-
-export type Post = {
-    id: string;
-    title: string;
-    views?: number;
-    createdAt?: string;
-    numOfComments?: number;
-    numOfRecommendations?: number;
-    thumbnail?: string;
-};
+import { Post } from '../types';
+import noImage from '@/assets/noImage.png';
 
 interface PostListProps {
     posts: Post[];
@@ -27,8 +19,8 @@ const PostCard = ({ post, thumbnailUrl }: PostCardProps) => {
                 <div className="flex gap-6">
                     <div className="w-32 h-32 bg-gray-100 rounded-lg overflow-hidden">
                         <img
-                            src={thumbnailUrl ?? '/src/assets/logo.svg'}
-                            alt={thumbnailUrl ? 'Post thumbnail' : 'Default thumbnail'}
+                            src={thumbnailUrl ?? noImage}
+                            alt={'Thumbnail'}
                             className="w-full h-full object-cover"
                         />
                     </div>

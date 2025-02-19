@@ -9,7 +9,8 @@ import {
     TableRow,
     TableFooter,
 } from '@/components/ui/table';
-import { Post } from './PostList';
+import { Post } from '../types';
+import noImage from '../assets/noImage.png';
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
@@ -36,7 +37,7 @@ export function DataTable<TData, TValue>({
         if (post.thumbnail && thumbnailUrls[post.thumbnail]) {
             return thumbnailUrls[post.thumbnail];
         }
-        return '/src/assets/logo.svg';
+        return undefined;
     };
 
     return (
@@ -76,12 +77,8 @@ export function DataTable<TData, TValue>({
                                 <TableCell className="w-20 p-3">
                                     <div className="w-14 h-14 bg-gray-100 rounded-lg overflow-hidden">
                                         <img
-                                            src={getThumbnailUrl(row.original as Post)}
-                                            alt={
-                                                (row.original as Post).thumbnail
-                                                    ? 'Post thumbnail'
-                                                    : 'Default thumbnail'
-                                            }
+                                            src={getThumbnailUrl(row.original as Post) || noImage}
+                                            alt="noImage"
                                             className="w-full h-full object-cover"
                                         />
                                     </div>
