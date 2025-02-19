@@ -25,6 +25,10 @@ type Board = {
     totalElements: number;
 };
 
+type ThumbnailUrls = {
+    [key: string]: string;
+};
+
 const columns: ColumnDef<Post>[] = [
     {
         accessorKey: 'title',
@@ -65,12 +69,46 @@ const BoardPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchType, setSearchType] = useState('title');
     const [viewMode, setViewMode] = useState<'table' | 'list'>('table');
+    const [thumbnailUrls, setThumbnailUrls] = useState<ThumbnailUrls>({});
+
+    const getThumbnailUrls = async (posts: Post[]) => {
+        // 썸네일이 있는 게시물의 ID만 필터링
+        const thumbnailIds = posts
+            .filter((post) => post.thumbnail !== null)
+            .map((post) => post.thumbnail as string);
+
+        if (thumbnailIds.length === 0) return {};
+
+        try {
+            const response = await fetchApi('/storage/accessUrls', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(thumbnailIds),
+            });
+
+            const urlMap: ThumbnailUrls = {};
+            thumbnailIds.forEach((id, index) => {
+                urlMap[id] = response[index];
+            });
+
+            return urlMap;
+        } catch (error) {
+            console.error('Error fetching thumbnail URLs:', error);
+            return {};
+        }
+    };
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const result = await getPostData(currentPage);
                 setData(result);
+
+                // 게시물 데이터를 가져온 후 썸네일 URL 요청
+                const urls = await getThumbnailUrls(result.content);
+                setThumbnailUrls(urls);
             } catch (error) {
                 if (error instanceof Error) {
                     alert(error.message);
@@ -99,12 +137,17 @@ const BoardPage = () => {
                 `/posts/search/${searchType}?${searchType}=${searchTerm}`,
                 { method: 'GET' },
             );
+
             setData({
                 ...data,
                 content: response,
                 totalElements: response.length,
                 totalPages: data?.totalPages ?? 1,
             });
+
+            // 검색 결과에 대한 썸네일 URL도 가져오기
+            const urls = await getThumbnailUrls(response);
+            setThumbnailUrls(urls);
         } catch (error) {
             if (error instanceof Error) {
                 alert(error.message);
@@ -191,9 +234,10 @@ const BoardPage = () => {
                             columns={columns}
                             data={data?.content ?? []}
                             totalElements={data?.totalElements ?? 0}
+                            thumbnailUrls={thumbnailUrls}
                         />
                     ) : (
-                        <PostList posts={data?.content ?? []} />
+                        <PostList posts={data?.content ?? []} thumbnailUrls={thumbnailUrls} />
                     )}
                 </div>
 

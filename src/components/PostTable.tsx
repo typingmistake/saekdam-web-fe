@@ -15,12 +15,14 @@ interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
     totalElements?: number;
+    thumbnailUrls?: Record<string, string>;
 }
 
 export function DataTable<TData, TValue>({
     columns,
     data,
     totalElements,
+    thumbnailUrls = {},
 }: DataTableProps<TData, TValue>) {
     const navigate = useNavigate();
 
@@ -29,6 +31,13 @@ export function DataTable<TData, TValue>({
         columns,
         getCoreRowModel: getCoreRowModel(),
     });
+
+    const getThumbnailUrl = (post: Post) => {
+        if (post.thumbnail && thumbnailUrls[post.thumbnail]) {
+            return thumbnailUrls[post.thumbnail];
+        }
+        return '/src/assets/logo.svg';
+    };
 
     return (
         <div className="overflow-hidden">
@@ -67,8 +76,12 @@ export function DataTable<TData, TValue>({
                                 <TableCell className="w-20 p-3">
                                     <div className="w-14 h-14 bg-gray-100 rounded-lg overflow-hidden">
                                         <img
-                                            src="/src/assets/logo.svg"
-                                            alt="Post thumbnail"
+                                            src={getThumbnailUrl(row.original as Post)}
+                                            alt={
+                                                (row.original as Post).thumbnail
+                                                    ? 'Post thumbnail'
+                                                    : 'Default thumbnail'
+                                            }
                                             className="w-full h-full object-cover"
                                         />
                                     </div>
