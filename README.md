@@ -5,7 +5,7 @@
 </div>
 
 <div align="center">
-  <a href="https://www.notion.so/SKT-FLY-AI-6-1778ab91c32080a5b396f4809387d475" target="_blank">팀 노션</a> | <a href="https://github.com/typingmistake/saekdam-be">백엔드 레포</a> | <a href="https://github.com/typingmistake/saekdam-web-fe">프론트엔드 웹 레포</a> | <a href="https://github.com/SKFLY-FINAL-PROJECT-6/saekdam-app-fe">프론트엔드 앱 레포</a>
+  <a href="https://splashy-band-e63.notion.site/SKT-FLY-AI-6-1778ab91c32080a5b396f4809387d475" target="_blank">팀 노션</a> | <a href="https://github.com/typingmistake/saekdam-be">백엔드 레포</a> | <a href="https://github.com/typingmistake/saekdam-web-fe">프론트엔드 웹 레포</a> | <a href="https://github.com/SKFLY-FINAL-PROJECT-6/saekdam-app-fe">프론트엔드 앱 레포</a>
 </div>
 
 ---
@@ -47,11 +47,10 @@
 ---
 
 ## 🔧 주요 기술적 고민사항
-
-- [BastionHost 대신 SSM을 사용해보자](https://www.notion.so/BastionHost-SSM-19b8ab91c32080a0a155d73f90d6b5c7)
-- [Redis와 ws를 활용한 AI 작업 모니터링](https://www.notion.so/Redis-ws-AI-19f8ab91c320802b831eebce460deb1e)
-- [객체 버킷과 PreSigned URL](https://www.notion.so/PreSigned-URL-19b8ab91c320804faecbfbe964240faf)
-- [Stable Diffusion 모델 LoRA 적용 과정](https://www.notion.so/Stable-Diffusion-LoRA-1a08ab91c320804ba27ccc635cb3a2bb)
+- [BastionHost 대신 SSM을 사용해보자](https://splashy-band-e63.notion.site/BastionHost-SSM-19b8ab91c32080a0a155d73f90d6b5c7)
+- [Redis와 ws를 활용한 AI 작업 모니터링](https://splashy-band-e63.notion.site/Redis-ws-AI-19f8ab91c320802b831eebce460deb1e)
+- [객체 버킷과 PreSigned URL](https://splashy-band-e63.notion.site/PreSigned-URL-19b8ab91c320804faecbfbe964240faf)
+- [Stable Diffusion 모델 LoRA 적용 과정](https://splashy-band-e63.notion.site/Stable-Diffusion-LoRA-1a08ab91c320804ba27ccc635cb3a2bb)
 
 ---
 
